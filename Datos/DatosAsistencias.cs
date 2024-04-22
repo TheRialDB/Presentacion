@@ -124,30 +124,6 @@ namespace Datos
             }
             return ds;
         }
-
-        public bool ExisteCodigoAsistencia(string codigoAsistencia)
-        {
-            string consulta = "SELECT COUNT(*) FROM asistencias WHERE dni = @dni";
-            SqlCommand cmd = new SqlCommand(consulta, conexion);
-            cmd.Parameters.AddWithValue("@dni", codigoAsistencia);
-
-            try
-            {
-                Abrirconexion();
-                int count = (int)cmd.ExecuteScalar(); // Obtenemos el resultado del conteo de filas
-                return count > 0; // Devolvemos true si el código de asistencia existe en la tabla
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error al verificar la existencia del código de la asistencia.", e);
-            }
-            finally
-            {
-                Cerrarconexion();
-                cmd.Dispose();
-            }
-
-        }
         public bool ExisteDniAlumno(string documentoAlu)
         {
             string consulta = "SELECT COUNT(*) FROM alumnos WHERE dni = @documentoAlu";
@@ -163,6 +139,51 @@ namespace Datos
             catch (Exception e)
             {
                 throw new Exception("Error al verificar la existencia del DNI del Alumno.", e);
+            }
+            finally
+            {
+                Cerrarconexion();
+                cmd.Dispose();
+            }
+        }
+        public bool ExisteAsistencia(string asistenciaAlu)
+        {
+            string consulta = "SELECT COUNT(*) FROM asistencias WHERE Dni = @Dni";
+            SqlCommand cmd = new SqlCommand(consulta, conexion);
+            cmd.Parameters.AddWithValue("@Dni", asistenciaAlu);
+
+            try
+            {
+                Abrirconexion();
+                int count = (int)cmd.ExecuteScalar(); // Obtenemos el resultado del conteo de filas
+                return count > 0; // Devolvemos true si el código de socio existe en la tabla
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al verificar la existencia del la asistencia del Alumno.", e);
+            }
+            finally
+            {
+                Cerrarconexion();
+                cmd.Dispose();
+            }
+        }
+        public bool ExisteAsistenciaFecha(int documentoAlu, DateTime fecha)
+        {
+            string consulta = "SELECT COUNT(*) FROM Asistencias WHERE Dni = @Dni AND Fecha = @Fecha";
+            SqlCommand cmd = new SqlCommand(consulta, conexion);
+            cmd.Parameters.AddWithValue("@Dni", documentoAlu);
+            cmd.Parameters.AddWithValue("@Fecha", fecha);
+
+            try
+            {
+                Abrirconexion();
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0; // Devuelve true si ya existe una asistencia para el alumno en la fecha especificada
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al verificar la existencia de la asistencia del alumno.", e);
             }
             finally
             {

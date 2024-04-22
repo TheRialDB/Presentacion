@@ -10,12 +10,15 @@ namespace Entidades
     public class Alumno
     {
         #region atributos
+
         private long dni;
         private string nombre;
+        private char activo;
 
         #endregion
 
         #region constructor
+
         public Alumno()
         {
             
@@ -25,6 +28,13 @@ namespace Entidades
         {
             dni = doc;
             nombre = name;
+        }
+
+        public Alumno(int doc, string name, char act)
+        {
+            dni = doc;
+            nombre = name;
+            activo = act;
         }
         #endregion
 
@@ -39,6 +49,12 @@ namespace Entidades
         {
             get { return nombre; }
             set { nombre = value; }
+        }
+
+        public char Activo
+        {
+            get { return activo; } 
+            set { activo = value; }
         }
         #endregion
     }

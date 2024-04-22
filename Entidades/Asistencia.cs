@@ -25,14 +25,12 @@ namespace Entidades
                 dni = dniAlu;
         }
         public Asistencia (long dniAlu, DateTime fech)
-        {
-           
+        {           
             dni = dniAlu;
             fecha = fech;
         }
         public Asistencia(long dniAlu, DateTime fech, bool pres)
-        {
-           
+        {           
             dni = dniAlu;
             fecha = fech;
             presentismo = pres;

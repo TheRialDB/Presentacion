@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnReporte = new System.Windows.Forms.Button();
             this.txtDni = new System.Windows.Forms.TextBox();
             this.btnBorrarAlumno = new System.Windows.Forms.Button();
             this.btnModificarAlumn = new System.Windows.Forms.Button();
@@ -53,6 +54,8 @@
             this.dgvAsistencia = new System.Windows.Forms.DataGridView();
             this.epvAlumnos = new System.Windows.Forms.ErrorProvider(this.components);
             this.epvAsistencias = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnBaja = new System.Windows.Forms.Button();
+            this.btnAlta = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).BeginInit();
@@ -75,6 +78,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnAlta);
+            this.tabPage1.Controls.Add(this.btnBaja);
+            this.tabPage1.Controls.Add(this.btnReporte);
             this.tabPage1.Controls.Add(this.txtDni);
             this.tabPage1.Controls.Add(this.btnBorrarAlumno);
             this.tabPage1.Controls.Add(this.btnModificarAlumn);
@@ -91,16 +97,26 @@
             this.tabPage1.Text = "Alumnos";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnReporte
+            // 
+            this.btnReporte.Location = new System.Drawing.Point(43, 343);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(75, 23);
+            this.btnReporte.TabIndex = 9;
+            this.btnReporte.Text = "Reporte";
+            this.btnReporte.UseVisualStyleBackColor = true;
+            this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click);
+            // 
             // txtDni
             // 
-            this.txtDni.Location = new System.Drawing.Point(43, 142);
+            this.txtDni.Location = new System.Drawing.Point(43, 74);
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(100, 20);
             this.txtDni.TabIndex = 8;
             // 
             // btnBorrarAlumno
             // 
-            this.btnBorrarAlumno.Location = new System.Drawing.Point(43, 318);
+            this.btnBorrarAlumno.Location = new System.Drawing.Point(43, 179);
             this.btnBorrarAlumno.Name = "btnBorrarAlumno";
             this.btnBorrarAlumno.Size = new System.Drawing.Size(75, 23);
             this.btnBorrarAlumno.TabIndex = 7;
@@ -110,7 +126,7 @@
             // 
             // btnModificarAlumn
             // 
-            this.btnModificarAlumn.Location = new System.Drawing.Point(43, 263);
+            this.btnModificarAlumn.Location = new System.Drawing.Point(43, 150);
             this.btnModificarAlumn.Name = "btnModificarAlumn";
             this.btnModificarAlumn.Size = new System.Drawing.Size(75, 23);
             this.btnModificarAlumn.TabIndex = 6;
@@ -120,7 +136,7 @@
             // 
             // btnCargarAlumn
             // 
-            this.btnCargarAlumn.Location = new System.Drawing.Point(43, 208);
+            this.btnCargarAlumn.Location = new System.Drawing.Point(43, 121);
             this.btnCargarAlumn.Name = "btnCargarAlumn";
             this.btnCargarAlumn.Size = new System.Drawing.Size(75, 23);
             this.btnCargarAlumn.TabIndex = 5;
@@ -140,7 +156,7 @@
             // lblDni
             // 
             this.lblDni.AutoSize = true;
-            this.lblDni.Location = new System.Drawing.Point(40, 101);
+            this.lblDni.Location = new System.Drawing.Point(40, 58);
             this.lblDni.Name = "lblDni";
             this.lblDni.Size = new System.Drawing.Size(26, 13);
             this.lblDni.TabIndex = 3;
@@ -149,7 +165,7 @@
             // lblAlumno
             // 
             this.lblAlumno.AutoSize = true;
-            this.lblAlumno.Location = new System.Drawing.Point(40, 26);
+            this.lblAlumno.Location = new System.Drawing.Point(40, 6);
             this.lblAlumno.Name = "lblAlumno";
             this.lblAlumno.Size = new System.Drawing.Size(44, 13);
             this.lblAlumno.TabIndex = 2;
@@ -157,7 +173,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(43, 51);
+            this.txtNombre.Location = new System.Drawing.Point(43, 22);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 0;
@@ -191,7 +207,7 @@
             // 
             // btnBorrarAsistencia
             // 
-            this.btnBorrarAsistencia.Location = new System.Drawing.Point(25, 345);
+            this.btnBorrarAsistencia.Location = new System.Drawing.Point(25, 333);
             this.btnBorrarAsistencia.Name = "btnBorrarAsistencia";
             this.btnBorrarAsistencia.Size = new System.Drawing.Size(75, 23);
             this.btnBorrarAsistencia.TabIndex = 7;
@@ -201,7 +217,7 @@
             // 
             // btnModificarAsistencia
             // 
-            this.btnModificarAsistencia.Location = new System.Drawing.Point(25, 316);
+            this.btnModificarAsistencia.Location = new System.Drawing.Point(25, 304);
             this.btnModificarAsistencia.Name = "btnModificarAsistencia";
             this.btnModificarAsistencia.Size = new System.Drawing.Size(75, 23);
             this.btnModificarAsistencia.TabIndex = 6;
@@ -211,7 +227,7 @@
             // 
             // btnCargarAsistencia
             // 
-            this.btnCargarAsistencia.Location = new System.Drawing.Point(25, 286);
+            this.btnCargarAsistencia.Location = new System.Drawing.Point(25, 275);
             this.btnCargarAsistencia.Name = "btnCargarAsistencia";
             this.btnCargarAsistencia.Size = new System.Drawing.Size(75, 23);
             this.btnCargarAsistencia.TabIndex = 5;
@@ -232,9 +248,9 @@
             // 
             this.gpbAsistencia.Controls.Add(this.rdbAusente);
             this.gpbAsistencia.Controls.Add(this.rdbPresente);
-            this.gpbAsistencia.Location = new System.Drawing.Point(25, 157);
+            this.gpbAsistencia.Location = new System.Drawing.Point(25, 136);
             this.gpbAsistencia.Name = "gpbAsistencia";
-            this.gpbAsistencia.Size = new System.Drawing.Size(200, 100);
+            this.gpbAsistencia.Size = new System.Drawing.Size(128, 100);
             this.gpbAsistencia.TabIndex = 3;
             this.gpbAsistencia.TabStop = false;
             this.gpbAsistencia.Text = "Asistencia";
@@ -271,7 +287,7 @@
             // 
             // txtDniAlumno
             // 
-            this.txtDniAlumno.Location = new System.Drawing.Point(25, 53);
+            this.txtDniAlumno.Location = new System.Drawing.Point(25, 44);
             this.txtDniAlumno.Name = "txtDniAlumno";
             this.txtDniAlumno.Size = new System.Drawing.Size(100, 20);
             this.txtDniAlumno.TabIndex = 1;
@@ -294,6 +310,26 @@
             // 
             this.epvAsistencias.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.epvAsistencias.ContainerControl = this;
+            // 
+            // btnBaja
+            // 
+            this.btnBaja.Location = new System.Drawing.Point(43, 241);
+            this.btnBaja.Name = "btnBaja";
+            this.btnBaja.Size = new System.Drawing.Size(75, 23);
+            this.btnBaja.TabIndex = 10;
+            this.btnBaja.Text = "Desactivar";
+            this.btnBaja.UseVisualStyleBackColor = true;
+            this.btnBaja.Click += new System.EventHandler(this.btnBaja_Click);
+            // 
+            // btnAlta
+            // 
+            this.btnAlta.Location = new System.Drawing.Point(43, 270);
+            this.btnAlta.Name = "btnAlta";
+            this.btnAlta.Size = new System.Drawing.Size(75, 23);
+            this.btnAlta.TabIndex = 11;
+            this.btnAlta.Text = "Activar";
+            this.btnAlta.UseVisualStyleBackColor = true;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
             // Presentacion
             // 
@@ -344,6 +380,9 @@
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.ErrorProvider epvAlumnos;
         private System.Windows.Forms.ErrorProvider epvAsistencias;
+        private System.Windows.Forms.Button btnReporte;
+        private System.Windows.Forms.Button btnAlta;
+        private System.Windows.Forms.Button btnBaja;
     }
 }
 

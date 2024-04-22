@@ -16,24 +16,50 @@ namespace Datos
             int resultado = -1;  // controlar que se realize la operacion con exito
             string orden = string.Empty; // para guardar consulta sql
 
-            if (accion == "Alta") // para agregar un producto nuevo
-            {
-                //orden = $"insert into alumnos (Dni, Nombre) values ('{objAlumno.Dni}', '{objAlumno.Nombre}');";
-                orden = $"insert into alumnos (Dni, Nombre) values ('{objAlumno.Dni}', '{objAlumno.Nombre}');";
-            }
+            #region abm vieja
+            //if (accion == "Alta") // para agregar un producto nuevo
+            //{
+            //    //orden = $"insert into alumnos (Dni, Nombre) values ('{objAlumno.Dni}', '{objAlumno.Nombre}');";
+            //    orden = $"insert into alumnos (Dni, Nombre, Activo) values ('{objAlumno.Dni}', '{objAlumno.Nombre}');";
+            //}
 
-            if (accion == "Modificar") // para modificar un existente
-            {
-                orden = $"update alumnos set Dni='{objAlumno.Dni}', Nombre='{objAlumno.Nombre}';";
-            }
+            //if (accion == "Modificar") // para modificar un existente
+            //{
+            //    orden = $"update alumnos set Dni='{objAlumno.Dni}', Nombre='{objAlumno.Nombre}';";
+            //}
 
-            if (accion == "Borrar") // para borrar un existente
-            {
-                orden = $"delete from alumnos where dni =  '{objAlumno.Dni}';";
-            }
+            //if (accion == "Borrar") // para borrar un existente
+            //{
+            //    orden = $"delete from alumnos where dni =  '{objAlumno.Dni}';";
+            //}
+            #endregion
 
+            if (accion == "Alta")
+            {
+                orden = "INSERT INTO alumnos (Dni, Nombre, Activo) VALUES (@Dni, @Nombre, @Activo);";
+            }
+            else if (accion == "Modificar")
+            {
+                orden = "UPDATE Alumnos SET Nombre = @Nombre WHERE Dni = @Dni;";
+            }
+            else if (accion == "Borrar")
+            {
+                orden = "DELETE FROM Alumnos WHERE Dni = @Dni;";
+            }
+            else if (accion == "Baja")
+            {
+                orden = "UPDATE Alumnos SET Activo = 'N' WHERE Dni = @Dni;";
+            }
+            else if (accion == "Activar")
+            {
+                orden = "UPDATE Alumnos SET Activo = 'S' WHERE Dni = @Dni;";
+            }
 
             SqlCommand cmd = new SqlCommand(orden, conexion);
+            cmd.Parameters.AddWithValue("@Dni", objAlumno.Dni);            
+            cmd.Parameters.AddWithValue("@Nombre", objAlumno.Nombre);
+            cmd.Parameters.AddWithValue("@Activo", objAlumno.Activo);
+            
             try
             {
                 Abrirconexion();
@@ -68,6 +94,7 @@ namespace Datos
             {
                 Abrirconexion();
                 cmd.ExecuteNonQuery();
+
                 da.SelectCommand = cmd;
                 da.Fill(ds);
             }
@@ -83,29 +110,6 @@ namespace Datos
             return ds;
         }
 
-        public bool ExisteCodigoAlumno(string codigoAlumno)
-        {
-            string consulta = "SELECT COUNT(*) FROM alumnos WHERE dni = @dni";
-            SqlCommand cmd = new SqlCommand(consulta, conexion);
-            cmd.Parameters.AddWithValue("@dni", codigoAlumno);
-
-            try
-            {
-                Abrirconexion();
-                int count = (int)cmd.ExecuteScalar(); // Obtenemos el resultado del conteo de filas
-                return count > 0; // Devolvemos true si el código de alumno existe en la tabla
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error al verificar la existencia del código de alumno.", e);
-            }
-            finally
-            {
-                Cerrarconexion();
-                cmd.Dispose();
-            }
-
-        }
         public bool ExisteDniAlumno(string dniAlum)
         {
             string consulta = "SELECT COUNT(*) FROM alumnos WHERE dni = @dniAlum";
@@ -116,7 +120,7 @@ namespace Datos
             {
                 Abrirconexion();
                 int count = (int)cmd.ExecuteScalar(); // Obtenemos el resultado del conteo de filas
-                return count > 0; // Devolvemos true si el código de socio existe en la tabla
+                return count > 0; // Devolvemos true si el código de alumno existe en la tabla
             }
             catch (Exception e)
             {

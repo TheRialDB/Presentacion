@@ -28,5 +28,15 @@ namespace Negocios
         {
             return objDatosAsist.ExisteDniAlumno(documentoAlu);
         }
+
+        public bool ExisteAsistencia(string asistenciaAlu)
+        {
+            return objDatosAsist.ExisteAsistencia(asistenciaAlu);
+        }
+
+        public bool ExisteAsistenciaFecha(int asistenciaAlu, DateTime fecha)
+        {
+            return objDatosAsist.ExisteAsistenciaFecha(asistenciaAlu, fecha);
+        }
     }
 }
